@@ -50,7 +50,14 @@ coverage.xml
 *.model
 *.weights
 *.onnx
-# You may want to allow README/doc in models dir:
+
+# Allow backend model weight files required for inference
+!backend/models/label_encoder.pkl
+!backend/models/pca_model.pkl
+!backend/models/best_mlp_custom_adv.pth
+!backend/models/protein_classifier.pt
+!backend/models/final_ckpt.pt
+!backend/models/*.json
 !backend/models/README.md
 
 # Node/React
