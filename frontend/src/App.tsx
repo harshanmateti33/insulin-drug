@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Loader } from 'lucide-react';
 import LoginPage from './LoginPage';
 import Navbar from './components/Navbar';
@@ -12,6 +12,7 @@ import DocumentationPage from './pages/DocumentationPage';
 import DashboardPage from './pages/DashboardPage';
 import AlphaFold2Page from './pages/AlphaFold2Page';
 import DockingPage from './pages/DockingPage';
+import { API_BASE_URL } from './config';
 
 interface User {
   id: string;
@@ -32,7 +33,7 @@ function App() {
 
   const checkAuthStatus = async () => {
     try {
-      const response = await fetch('http://localhost:5001/api/check-auth', {
+      const response = await fetch(`${API_BASE_URL}/api/check-auth`, {
         credentials: 'include',
       });
       
@@ -67,7 +68,7 @@ function App() {
 
   const handleLogout = async () => {
     try {
-      await fetch('http://localhost:5001/api/logout', {
+      await fetch(`${API_BASE_URL}/api/logout`, {
         method: 'POST',
         credentials: 'include',
       });

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Loader, CheckCircle2, AlertCircle, Dna, Download, Sparkles } from 'lucide-react';
+import { API_BASE_URL } from '../config';
 
 interface AlphaFold2Result {
   success: boolean;
@@ -48,7 +49,7 @@ export default function AlphaFold2Page() {
     setResult(null);
 
     try {
-      const response = await fetch('http://localhost:5001/alphafold2/predict', {
+      const response = await fetch(`${API_BASE_URL}/alphafold2/predict`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff, User, Lock, LogIn, UserPlus, AlertCircle, CheckCircle2, Sparkles, Smartphone, Mail, Key, ArrowLeft, Home } from 'lucide-react';
+import { API_BASE_URL } from './config';
 
 interface LoginPageProps {
   onLogin: (user: { id: string; username: string }) => void;
@@ -62,7 +63,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin, onBackToHome }) => {
 
     try {
       const endpoint = isLogin ? '/api/login' : '/api/register';
-      const response = await fetch(`http://localhost:5001${endpoint}`, {
+      const response = await fetch(`${API_BASE_URL}${endpoint}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -131,14 +132,14 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin, onBackToHome }) => {
   const handleGoogleAuth = () => {
     setIsLoading(true);
     setError(null);
-    window.location.href = 'http://localhost:5001/api/auth/google';
+    window.location.href = `${API_BASE_URL}/api/auth/google`;
   };
 
   const requestMobileOtp = async () => {
     try {
       setIsLoading(true);
       setError(null);
-      const res = await fetch('http://localhost:5001/api/request-otp-mobile', {
+      const res = await fetch(`${API_BASE_URL}/api/request-otp-mobile`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -162,7 +163,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin, onBackToHome }) => {
     try {
       setIsLoading(true);
       setError(null);
-      const res = await fetch('http://localhost:5001/api/verify-otp-mobile', {
+      const res = await fetch(`${API_BASE_URL}/api/verify-otp-mobile`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -190,7 +191,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin, onBackToHome }) => {
     try {
       setIsLoading(true);
       setError(null);
-      const res = await fetch('http://localhost:5001/api/set-password-mobile', {
+      const res = await fetch(`${API_BASE_URL}/api/set-password-mobile`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',

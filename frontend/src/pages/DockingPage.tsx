@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Loader, CheckCircle, AlertCircle, FlaskConical, Download } from 'lucide-react';
+import { API_BASE_URL } from '../config';
 
 interface DockingResult {
   success: boolean;
@@ -50,7 +51,7 @@ export default function DockingPage() {
         payload.protein_pdb = proteinPDB.trim();
       }
 
-      const response = await fetch('http://localhost:5001/docking/run', {
+      const response = await fetch(`${API_BASE_URL}/docking/run`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Send, AlertCircle, CheckCircle, Loader, Activity, LogOut, User, Moon, Sun, Dna, FlaskConical, Download, Sparkles } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../config';
 
 interface User {
   id: string;
@@ -113,7 +114,7 @@ export default function DashboardPage({ user, onLogout, isDarkMode, toggleTheme 
     setResult(null);
 
     try {
-      const response = await fetch('http://localhost:5001/predict', {
+      const response = await fetch(`${API_BASE_URL}/predict`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -165,7 +166,7 @@ export default function DashboardPage({ user, onLogout, isDarkMode, toggleTheme 
     setGeneratedSequences([]);
 
     try {
-      const response = await fetch('http://localhost:5001/generate-sequences', {
+      const response = await fetch(`${API_BASE_URL}/generate-sequences`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -217,7 +218,7 @@ export default function DashboardPage({ user, onLogout, isDarkMode, toggleTheme 
     setGeneratedSmiles('');
 
     try {
-      const response = await fetch('http://localhost:5001/generate-smiles', {
+      const response = await fetch(`${API_BASE_URL}/generate-smiles`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -289,7 +290,7 @@ export default function DashboardPage({ user, onLogout, isDarkMode, toggleTheme 
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 900000); // 15 minutes timeout
       
-      const response = await fetch('http://localhost:5001/alphafold2/predict', {
+      const response = await fetch(`${API_BASE_URL}/alphafold2/predict`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -371,7 +372,7 @@ export default function DashboardPage({ user, onLogout, isDarkMode, toggleTheme 
         payload.protein_pdb = dockingProteinPDB.trim();
       }
 
-      const response = await fetch('http://localhost:5001/docking/run', {
+      const response = await fetch(`${API_BASE_URL}/docking/run`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
