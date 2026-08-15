@@ -1471,6 +1471,15 @@ def generate_smiles(input_seq: str) -> str:
         logger.error(traceback.format_exc())
         return "C[C@H](N)C(=O)O"
 
+@app.route('/', methods=['GET'])
+def root_index():
+    return jsonify({
+        'status': 'online',
+        'service': 'Insulin T2D Drug Synthesis API',
+        'health_check': '/health',
+        'models_loaded': all([custom_protein_lm is not None, mlp_model is not None, label_encoder is not None, pca_model is not None])
+    })
+
 @app.route('/health', methods=['GET'])
 def health():
     return jsonify({

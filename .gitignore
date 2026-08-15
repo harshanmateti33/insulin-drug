@@ -57,6 +57,8 @@ coverage.xml
 !backend/models/best_mlp_custom_adv.pth
 !backend/models/protein_classifier.pt
 !backend/models/final_ckpt.pt
+!backend/models/Sequence_Generator.pt
+!backend/models/Protein_to_Smile.pt
 !backend/models/*.json
 !backend/models/README.md
 
